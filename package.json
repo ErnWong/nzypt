@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "d3": "3.5.3"
+  },
+  "devDependencies": {
+    "browserify": "8.1.2",
+    "6to5ify": "4.0.0"
+  }
+}

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Velocity Modulation</title>
+  <style>
+    text {
+      text-transform: uppercase;
+      font-family: "Overpass";
+      font-weight: bold;
+      font-size: 20px;
+      fill: #444;
+    }
+    #bob {
+      fill: white;
+      stroke: #333;
+    }
+    .accelerate {
+      fill: #00b5b5;
+    }
+    .decelerate {
+      fill: crimson;
+    }
+    line, .line {
+      stroke: #555;
+      fill: none;
+    }
+    .solenoid {
+      fill:none;
+      stroke: #555;
+      stroke-width: 4px;
+    }
+    .obedient {
+      stroke-width: 2px;
+      vector-effect: non-scaling-stroke;
+    }
+    .positive-area {
+      fill: #89ffff;
+      stroke: teal;
+    }
+    .negative-area {
+      fill: #ff697b;
+      stroke: darkred;
+    }
+  </style>
+</head>
+<body>
+  <svg width="600" height="600" viewBox="0 0 1200 1200">
+    <g transform="translate(600, 40)">
+      <use
+        class="solenoid"
+        xlink:href="../res.svg#solenoid"
+        x="0"
+        y="100"></use>
+      <text
+        x="0"
+        y="220"
+        text-anchor="middle">solenoid</text>
+      <use
+        id="accelerate-left"
+        class="decelerate"
+        xlink:href="../res.svg#accelerate-left"
+        x="0"
+        y="0"
+        opacity="0"></use>
+      <use
+        id="accelerate-right"
+        class="accelerate"
+        xlink:href="../res.svg#accelerate-right"
+        x="0"
+        y="0"
+        opacity="1"></use>
+      <g
+        transform="translate(0, 60) scale(20)">
+        <line
+          id="path"
+          class="obedient"
+          x1="-6"
+          y1="0"
+          x2="6"
+          y2="0"
+          stroke-dasharray="5,8" />
+        <circle
+          id="bob"
+          class="obedient"
+          cx="0"
+          cy="0"
+          r="1" />
+      </g>
+    </g>
+    
+    <g
+      class="graph"
+      transform="translate(200, 300)">
+      <text
+        x="-20"
+        y="20"
+        text-anchor="end">force</text>
+      <rect
+        class="positive-area"
+        x="0"
+        y="0"
+        width="800"
+        height="100"
+        clip-path="url(#force-clip)" />
+      <rect
+        class="negative-area"
+        x="0"
+        y="100"
+        width="800"
+        height="100"
+        clip-path="url(#force-clip)" />
+      <clipPath
+        id="force-clip">
+        <path
+          id="force-area"
+          class="obedient"
+          transform="translate(0, 100) scale(80, -20)"
+          d="M 0 100 0 10 L 100 200 L 200 100 L 300 80 L 400 100 z" /></clipPath>
+      <use
+        xlink:href="#force-area"
+        class="line obedient"></use>
+      <line
+        class="obedient"
+        x1="0"
+        y1="100"
+        x2="800"
+        y2="100" />
+      <line
+        class="obedient"
+        x1="0"
+        y1="0"
+        x2="0"
+        y2="200"/>
+    </g>
+    
+    <g
+      class="graph"
+      transform="translate(200, 600)">
+      <text
+        x="-20"
+        y="20"
+        text-anchor="end">velocity</text>
+      <text
+        x="-20"
+        y="43"
+        text-anchor="end">change</text>
+      <rect
+        class="positive-area"
+        x="0"
+        y="0"
+        width="800"
+        height="100"
+        clip-path="url(#velocity-clip)" />
+      <rect
+        class="negative-area"
+        x="0"
+        y="100"
+        width="800"
+        height="100"
+        clip-path="url(#velocity-clip)" />
+      <clipPath
+        id="velocity-clip">
+        <path
+          id="velocity-area"
+          class="obedient"
+          transform="translate(0, 100) scale(80, -20)"
+          d="M 0 100 L 100 2 L 200 150 L 300 100 z" /></clipPath>
+      <use
+        xlink:href="#velocity-area"
+        class="line obedient"></use>
+      <line
+        class="obedient"
+        x1="0"
+        y1="100"
+        x2="800"
+        y2="100" />
+      <line
+        class="obedient"
+        x1="0"
+        y1="0"
+        x2="0"
+        y2="200" />
+    </g>
+  </svg>
+  <script src="bundle.js"></script>
+</body>
+</html>
